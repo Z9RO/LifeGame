@@ -1,5 +1,5 @@
 [package]
-name = "LifeGame"
+name = "life_game"
 version = "0.1.0"
 edition = "2018"
 
