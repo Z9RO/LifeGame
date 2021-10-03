@@ -1,4 +1,5 @@
 use board::Board;
+use rand::{prelude::ThreadRng, Rng};
 
 mod board;
 
@@ -6,6 +7,7 @@ pub struct LifeGame {
     row: usize,
     col: usize,
     base_board: Board,
+    rng: ThreadRng,
 }
 
 fn mask(val: u8) -> u8 {
@@ -29,6 +31,7 @@ impl LifeGame {
             row,
             col,
             base_board: Board::new(row + 2, col + 2),
+            rng: rand::thread_rng(),
         }
     }
 
@@ -76,6 +79,11 @@ impl LifeGame {
     }
 
     pub fn rand_set(&mut self) {
-        unimplemented!();
+        for x in 1..=self.row {
+            for y in 1..=self.col {
+                let value = if self.rng.gen_bool(0.5) { 1 } else { 0 };
+                self.base_board.set(x, y, value);
+            }
+        }
     }
 }
