@@ -70,10 +70,10 @@ impl LifeGame {
             }
         }
 
-        for x in 0..self.row {
-            for y in 0..self.col {
-                let state = self.base_board.get(x + 1, y + 1);
-                self.base_board.set(x + 1, y + 1, state >> 4);
+        for x in 1..=self.row {
+            for y in 1..=self.col {
+                let state = self.base_board.get(x, y);
+                self.base_board.set(x, y, state >> 4);
             }
         }
     }
